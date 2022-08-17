@@ -15,6 +15,8 @@
 
 # 1.2. Objects
 
+A<-c(1:200)
+
 # 1.3. Environment
 
 # 1.4. Functions
@@ -32,6 +34,9 @@
 #install.packages("tidycensus")
 library(tidycensus)
 census_api_key("0d539976d5203a96fa55bbf4421110d4b3db3648")
+
+install.packages("tidyverse")
+library(tidyverse)
 
 travis_inflow <- get_flows(
   geography = "county",
@@ -55,10 +60,10 @@ bexar_inflow <- get_flows(
   arrange(desc(estimate))
 
 
-#install.packages('mapdeck')
+install.packages('mapdeck')
 
 library(mapdeck)
-library(tidyverse)
+#library(tidyverse)
 
 token<-"pk.eyJ1IjoiZXN0ZWJhbmxwIiwiYSI6ImNreWFjOW84YTA0NWsyeXF1M3ZwbzM5NzQifQ.fVUKJ10zAVgIpMPeUrdvCg"
 
@@ -107,7 +112,7 @@ bexar_TTW <- get_acs(
   mutate(percent = 100 * (estimate / summary_est)) # Code extracted and adapted from Walker (2021) 
 
 # Choroplet map with distribution of racial concentrations
-#install.packages("tmap")
+install.packages("tmap")
 library(tmap)
 
 tm_shape(bexar_TTW,
@@ -125,5 +130,9 @@ tm_shape(bexar_TTW,
 bexar_TTW<- get_acs(geography = "tract", variables = "B08013_001",
            state = "TX", county = "Bexar", geometry = TRUE)
 
+
+library(mapview)
+mapviewOptions(fgb = FALSE)
+mapview(bexar_TTW,zcol="estimate")
 
 
