@@ -25,6 +25,8 @@ A<-c(1:200)
 
 # 1.6. Manipulating Objects
 
+A*A
+
 # 1.7. Packages or libraries
 
 
